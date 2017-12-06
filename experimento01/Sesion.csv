@@ -1,0 +1,2 @@
+﻿id,idLote,direccionViento,velocidadViento,temperatura,tipoHumedad,valorHumedad,fechaInicio,fechaFin,idCampana
+1,1,N,10,10,R,10,2017-12-05,2017-12-06,1

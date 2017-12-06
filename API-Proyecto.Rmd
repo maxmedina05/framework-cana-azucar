@@ -1,0 +1,122 @@
+---
+title: 
+output:
+  html_document: 
+    smart: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Proyecto de soporte de software para investigación sobre interceptación foliar
+
+El propósito del proyecto consiste en elaborar un "framework" de soporte software para una investigación sobre la interceptación foliar en un cultivo de caña de azúcar.
+
+Durante la investigación se llevan a cabo varias sesiones de observación (experimentos), donde el investigador captura datos referentes a mediciones y condiciones sobre el cultivo de caña de azúcar y su interceptación foliar. Estos datos son suministrados a través de archivos delimitados por coma (CSV) para su posterior procesamiento y filtrado.
+  
+Los archivos a importar son:  
+1. **Planton.csv**: se especifican los datos referentes a uno o más plantones.  
+2. **Lote.csv**: se especifican los datos referentes a uno o más lotes de cultivo de caña.  
+3. **PuntoCaptacion.csv**: se especifican los datos referentes a los puntos de captación ubicados en un lote.  
+4. **Mediciones.csv**: se especifican las mediciones realizadas durante una sesión.  
+4. **Sesion.csv**: se especifican los datos de entrada referentes a una sesión de observación.  
+5. **Campana.csv**: se especifican los datos de entrada referentes a una campaña de investigación.    
+
+Estos archivos deberán ser guardados bajo un directorio. Sin embargo, es posible importar archivos en otra ruta auxiliándose de la función respectiva.    
+
+
+***
+### Funciones  
+
+***
+#### Importación archivos  
+  
+`cargarData(pathArchivos)`  
+Importa los archivos que se encuentran en la ruta _pathArchivos_ especificada. Cada nombre de archivo debe coincidir con los nombres requeridos.
+
+En caso de desear guardar un archivo en específico, se hace a través de las siguientes función:  
+
+`cargarArchivo(rutaArchivo, tipo)`  
+Carga el archivo especificado  
+**Parámetros:**  
+_rutaArchivo_: ruta en la que se encuentra el archivo a cargar.  
+_tipo_: tipo del archivo a importar. Debe coincidir con uno de estas constantes:
+* PL: plantón
+* LT: lote
+* PC: punto captación
+* MD: mediciones
+* SS: sesión
+* CM: campaña
+**Salida:**  
+Mensaje indicando éxito de importación, o errores en caso de que no se haya cumplido la validación.
+
+***
+#### Filtros  
+Se proveen funciones que actúan sobre los datos previamente importados, esto es, para su filtrado.  
+Cada función de filtrado cuenta con la opción de exportar los resultados. Los archivos se guardarán en una carpeta _salidas_ ubicada en la carpeta del proyecto.
+
+`filtrarSesionesPorFecha(fechaInicio, fechaFin, exportar, nombreArchivo)`  
+Filtra las sesiones comprendidas en un rango de fecha.  
+**Parámetros:**  
+_fechaInicio_: valor fecha inicial.  
+_fechaFin_: valor fecha final.  
+_exportar_: indica si el resultado se desea exportar. TRUE / FALSE.  
+_nombreArchivo_: nombre del archivo a exportar.  
+**Salida:**  
+Resultados en formato de tabla, con estructura igual al archivo de entrada Sesion.csv  
+
+
+`filtrarSesionesPorDireccionViento(puntoCardinal, exportar, nombreArchivo)`  
+Filtra las sesiones comprendidas por una dirección de viento especificada.  
+**Parámetros:**  
+_puntoCardinal_: cadena de caracteres del punto cardinal a filtrar, esto es N, W, S, E, etc.  
+_exportar_: indica si el resultado se desea exportar. TRUE / FALSE.  
+_nombreArchivo_: nombre del archivo a exportar.  
+**Salida:**  
+Resultados en formato de tabla, con estructura igual al archivo de entrada Sesion.csv  
+
+
+`filtrarSesionesPorVelocidadViento(velocidadMinima, velocidadMaxima, exportar, nombreArchivo)`  
+Filtra las sesiones comprendidas en un rango de velocidad de viento especificado  
+**Parámetros:**  
+_velocidadMinima_: valor numérico de la velocidad inicial.  
+_velocidadMinima_: valor numérico de la velocidad final.  
+_exportar_: indica si el resultado se desea exportar. TRUE / FALSE.  
+_nombreArchivo_: nombre del archivo a exportar.  
+**Salida:**  
+Resultados en formato de tabla, con estructura igual al archivo de entrada Sesion.csv  
+
+
+`filtrarSesionesPorTemperatura(temperaturaMinima, temperaturaMaxima, exportar, nombreArchivo)`  
+Filtra las sesiones comprendidas en un rango de temperatura especificado  
+**Parámetros:**  
+_temperaturaMinima_: valor numérico de la temperatura inicial.  
+_temperaturaMaxima_: valor numérico de la temperatura final.  
+_exportar_: indica si el resultado se desea exportar. TRUE / FALSE.  
+_nombreArchivo_: nombre del archivo a exportar.  
+**Salida:**  
+Resultados en formato de tabla, con estructura igual al archivo de entrada Sesion.csv  
+
+
+`filtrarSesionesPorHumedad(tipo, valorMinimo, valorMaximo, exportar, nombreArchivo)`  
+Filtra las sesiones comprendidas en un rango de humedad especificado  
+**Parámetros:**  
+_tipo_: caracter del tipo de la humedad, esto es R = relatica, A = absoluta, etc.  
+_valorMinimo_: valor numérico de la humedad inicial.  
+_valorMaximo_: valor numérico de la humedad final.  
+_exportar_: indica si el resultado se desea exportar. TRUE / FALSE.  
+_nombreArchivo_: nombre del archivo a exportar.  
+**Salida:**  
+Resultados en formato de tabla, con estructura igual al archivo de entrada Sesion.csv  
+
+
+`filtrarRangoMedicion(laminaMinima, laminaMaxima, exportar, nombreArchivo)`  
+Filtra las mediciones realizadas en un rango especificado  
+**Parámetros:**  
+_laminaMinima_: valor mínimo de medición de referencia precipitación.  
+_laminaMaxima_: valor máximo de medición de referencia precipitación.  
+_exportar_: indica si el resultado se desea exportar. TRUE / FALSE.  
+_nombreArchivo_: nombre del archivo a exportar.  
+**Salida:**  
+Resultados en formato de tabla, con estructura igual al archivo de entrada Mediciones.csv  
