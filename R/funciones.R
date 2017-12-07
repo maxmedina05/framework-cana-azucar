@@ -37,25 +37,3 @@ calcularDistanciaEntreDosCoordenadas <- function(lng1, lat1, lng2, lat2) {
   d <- R * c
   return(d)
 }
-
-procesarDescargaCompartimiento <- function(Aef, h) {
-  res = Aef * sqrt(2 * g * h)
-}
-
-constructorModelo <- function(hm, hd, Aef, Aint) {
-  
-  h <- 0
-  
-  function(Qp) {
-    
-    if(h > hm) {
-      Qd <- Aef * sqrt(2 * GRAVEDAD * h)
-      output <- c(Qd, h)
-      return(output)
-    }
-    
-    if(h < hm & h == hd) {
-        
-    }
-  }
-}
