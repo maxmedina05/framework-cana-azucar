@@ -10,7 +10,7 @@ simpleCap(x)
 \item{x}{la cadena que se recibira los cambios.}
 }
 \value{
-una cadena de caracteres con el primer caracter en mayúscula.
+una cadena de caracteres con el primer caracter en mayuscula.
 }
 \description{
 Cambia el primer caracter de una cadena de caracteres a mayuscula.
