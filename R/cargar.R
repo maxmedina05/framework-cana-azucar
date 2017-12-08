@@ -186,8 +186,6 @@ validarSesion <- function(fichero) {
   }
 }
 
-
-
 # Validaciones de tipos de datos y valores
 
 #' Realiza las validaciones de un numero como booleano (0 y 1)
