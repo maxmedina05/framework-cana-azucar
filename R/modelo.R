@@ -73,7 +73,7 @@ procesarModelo <- function(df, modelo) {
     })
   }
 
-  sol <- ode(y=y0, times=df$instante, func=f, parms = NULL, method="euler")
+  sol <- ode(y=y0, times=c(0, df[, 'instante']), func=f, parms = NULL, method="euler")
   sol
 }
 
@@ -90,5 +90,7 @@ generarGrafica <- function(df, hm, hd, Aef, Aint) {
 }
 
 df <- read.csv(file="data/medicion.csv", header=TRUE, stringsAsFactors = FALSE)
-df$instante <- as.POSIXct(df$instante, format="%Y-%m-%d%H:%M")
+# df$instante <- as.numeric(as.POSIXct(df$instante, format="%Y-%m-%d%H:%M:%S"))
+df$instante <- as.numeric(as.POSIXct(df$instante, format="%M"))
 
+generarGrafica(df, 1, 10, 0.5, 0.2)

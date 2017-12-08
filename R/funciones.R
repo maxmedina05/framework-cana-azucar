@@ -18,10 +18,18 @@ cargarData <- function(ruta) {
 #' Aplica filtro sobre la data especificada
 #' @param data Data a filtrar
 #' @param filterExp Filtro a aplicar
+#' @return subset de la data. Este es el resultado del filtro en un objeto dataframe.
 filtro <- function (data, filterExp) {
   subset(data, filterExp)
 }
 
+
+#' Calcula la distancia entre dos puntos geograficos
+#' @param lng1 longitud 1
+#' @param lat latitud 1
+#' @param lng2 longitud 2
+#' @param lat2 latitud 2
+#' @return returna la distancia entre los dos puntos en metros
 calcularDistanciaEntreDosPuntos <- function(p1, p2) {
   distHaversine(p1, p2)
 }
@@ -31,6 +39,7 @@ calcularDistanciaEntreDosPuntos <- function(p1, p2) {
 #' @param lat latitud 1
 #' @param lng2 longitud 2
 #' @param lat2 latitud 2
+#' @return returna la distancia entre los dos puntos en metros
 calcularDistanciaEntreDosCoordenadas <- function(lng1, lat1, lng2, lat2) {
   rad <- pi/180
   a1 <- lat1 * rad
